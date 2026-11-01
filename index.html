@@ -70,7 +70,6 @@ table.t td{border-bottom:1px solid var(--ln);padding:6px 8px}
 <div class="page on" id="p1"><div class="grid">
 <div class="card">
   <h2>输入待评估的品<span class="pill">销运填写</span></h2>
-  <div class="chips" id="chips"></div>
   <div class="r2">
     <div class="f"><label>品牌</label><input type="text" id="brand" placeholder="如：丸美"></div>
     <div class="f"><label>品名</label><input type="text" id="name" placeholder="如：小金针次抛"></div>
@@ -113,7 +112,7 @@ table.t td{border-bottom:1px solid var(--ln);padding:6px 8px}
   <button class="btn" onclick="run()">生成选品评估 →</button>
 </div>
 <div class="card"><h2>评估结果<span class="pill">Agent 输出</span></h2>
-  <div class="empty" id="empty">← 填写品的信息，或点上方案例一键带入<br><br>输出：爆品指数与分档 · 逐项命中明细 · 熟龄适配与时机判断 · 改造 / 开品建议</div>
+  <div class="empty" id="empty">← 填写品的信息，或到「案例」页点任一品带入<br><br>输出：爆品指数与分档 · 逐项命中明细 · 熟龄适配与时机判断 · 改造 / 开品建议</div>
   <div id="res"></div>
 </div>
 </div></div>
@@ -260,7 +259,6 @@ function load(c){var p=c.p;document.getElementById('brand').value=c.brand;docume
  var cat=p.cat==='护肤'?'护肤':p.cat;document.getElementById('cat').value=cat;
  ['fx','part','pack','price','form','age30','age40','month'].forEach(function(i){document.getElementById(i).value=(p[i]===undefined?'':p[i])});
  CK.forEach(function(i){document.getElementById(i).checked=!!p[i]});setStage(p.stage);run()}
-document.getElementById('chips').innerHTML=CASES.map(function(c,i){return '<span class="chip'+(c.neg?' neg':'')+'" onclick="load(CASES['+i+'])">'+(c.neg?'✗ ':'')+c.brand+' · '+c.name+'</span>'}).join('');
 function run(){
  var p=read(),r=evaluate(p),c=r.lv[2],bg={S:'#e8f6ee',A:'#eaf1fe',B:'#fdf4e3',C:'#fdeded',X:'#fdeded'}[r.lv[0]];
  var rows=r.items.map(function(it){var g=WGROUP[it.k],gc=g==='门槛'?'gm':(g==='加分'?'ga':'gr');
